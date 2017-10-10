@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class FacebookProfileController {
-	
+	/*there are some issues with this code please update pom.xml according to the latest repository of spring-social and replace the code with commented one*/
 	@Inject
 	private ConnectionRepository connectionRepository;
 
@@ -37,6 +37,10 @@ public class FacebookProfileController {
 		if (connection == null) {
 			return "redirect:/connect/facebook";
 		}
+		/*String [] fields = { "id","name","birthday","email","location","hometown","gender","first_name","last_name"};
+        User user = facebook.fetchObject("me", User.class, fields); //import spring-social User
+	model.addAttribute("profile", facebook.fetchObject("me", User.class, fields));
+	*/
 		model.addAttribute("profile", connection.getApi().userOperations().getUserProfile());
 		return "facebook/profile";
 	}
